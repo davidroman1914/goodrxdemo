@@ -14,7 +14,50 @@ If you want a list of all the targets `make help`
 ```
 
 ### Make infra-up 
-When running this target, Terraform will spin up an EC2 and an ELB.  Inside of the `app/` directory you will find a `GOLANG` server that greets you. For Devability it's important to be able to run your app locally or remotely, for this reason `Docker` is used. 
+When running this target, Terraform will spin up an EC2 and an ELB.  Inside of the `app/` directory you will find a `GOLANG` server that greets you. Below is the code itself which is also in `goserver/app/src/main.go`
+
+``` 
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"github.com/gorilla/mux"
+)
+
+func HelloHandler(w http.ResponseWriter, r *http.Request) {
+
+	w.WriteHeader(http.StatusOK)
+	vars := mux.Vars(r)
+
+	greetings, err := getGreeting(vars["key"])
+	if err != nil {
+		log.Println(`Failed to get a username: %v`, err)
+	}
+	io.WriteString(w, greetings)
+}
+
+func getGreeting(userGreeting string) (string, error) {
+
+	if len(userGreeting) == 0 {
+		return "<h1>No one to greet! :(<h1>", nil // if we choose we can format an error and handle it.
+	}
+	return fmt.Sprintf(`<h1>Hello, %v!!!! :)<h1>`, userGreeting), nil
+}
+
+func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/hello/{key}", HelloHandler)
+	r.HandleFunc("/hello", HelloHandler)
+	r.HandleFunc("/", HelloHandler)
+
+	log.Fatal(http.ListenAndServe("0.0.0.0:31381", r))
+}
+```
+
+For Devability it's important to be able to run your app locally or remotely, for this reason `Docker` is used. 
 
 Inside of the `infra/` directory there is a `scripts/setup.sh` file that checkouts our app from github and calls make to run the app for us. 
 ```
