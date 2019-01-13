@@ -59,7 +59,7 @@ func main() {
 
 For Devability it's important to be able to run your app locally or remotely, for this reason `Docker` is used. 
 
-Inside of the `infra/` directory there is a `scripts/setup.sh` file that checkouts our app from github and calls make to run the app for us. 
+Inside of the `infra/` directory there is a `scripts/setup.sh` file that checkouts our app from github and calls `make` to run the app for us. 
 ```
     git clone https://github.com/davidroman1914/goodrxdemo.git && \
     cd goodrxdemo && \
