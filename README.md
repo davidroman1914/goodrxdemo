@@ -1,5 +1,21 @@
 # goodrxdemo |
 
+
+##Quick step up, we will need to add the access, secret key in `vars.tf`.
+```
+variable "AWS_ACCESS_KEY" {
+  type    = "string"
+  default = ""
+}
+
+variable "AWS_SECRET_KEY" {
+  type    = "string"
+  default = ""
+}
+
+```
+
+
 Below you will find the make targets that are available, you only really need two of them `make infra-up` and `make infra-down`. 
 
 If you want a list of all the targets `make help` 
