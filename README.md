@@ -2,6 +2,7 @@
 
 
 ### Quick step up, we will need to add the access, secret key in `vars.tf`.
+Note: For security reasons, it's best not to have those in the source code.
 ```
 variable "AWS_ACCESS_KEY" {
   type    = "string"
