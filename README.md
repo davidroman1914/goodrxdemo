@@ -1,7 +1,7 @@
 # goodrxdemo |
 
 
-##Quick step up, we will need to add the access, secret key in `vars.tf`.
+## Quick step up, we will need to add the access, secret key in `vars.tf`.
 ```
 variable "AWS_ACCESS_KEY" {
   type    = "string"
