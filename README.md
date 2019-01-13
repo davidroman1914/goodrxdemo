@@ -24,7 +24,7 @@ Inside of the `infra/` directory there is a `scripts/setup.sh` file that checkou
     sudo make deploy
 ``` 
 
-Once the ELB has initialized and has gone through the health checks we should be able to see our app. If we need to get the ELB DNS name we can do that by 
+Once the ELB has initialized and has gone through the health checks we should be able to see our app. I normally give it 25 seconds. If we need to get the ELB DNS name we can do that by
 ``` 
 make get-elb-dns
 
@@ -36,7 +36,18 @@ Then we're able to hit our endpoints such as:
     http://goserver-terraform-elb-102402541.us-west-2.elb.amazonaws.com
     http://goserver-terraform-elb-102402541.us-west-2.elb.amazonaws.com/hello/david
 ```
-    
 
+### SSH-ing 
+
+If want to SSH in we can do that by 
+```
+    ssh -i infra/keys/goodrx ubuntu@[IP]
+```
+We can at anytime get the public ip by 
+```
+    make get-pub-ip
+```
+
+    
 ### Make infra-down 
 When running this target, Terraform will spin down an EC2 and an ELB. 
