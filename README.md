@@ -1,6 +1,6 @@
 # goodrxdemo |
 
-Below you will find the make target that are available, you only really need two of them `make infra-up` and `make infra-down`. 
+Below you will find the make targets that are available, you only really need two of them `make infra-up` and `make infra-down`. 
 
 Start by calling the `make help` 
 ```
