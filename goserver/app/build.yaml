@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+
+  goserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: goodrx/goserver:latest
+    volumes:
+      - "./src/:/opt/workspace/"
+    ports:
+      - 31381:31381
+    tty: true
+    stdin_open: true
